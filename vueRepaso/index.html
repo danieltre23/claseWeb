@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+  </head>
+
+  <body>
+    <div id="app"> {{ message }} </div>
+
+    <div id="turismo">
+      <button v-on:click="hide = !hide"> {{ hide ? 'Mostrar' : 'Esconder' }} lugares</button>
+      <div v-if="!hide">
+        <div v-for="(lugar, index) in lugares">
+          <h4> {{ lugar.nombre }} </h4>
+          <img :src="lugar.imagen" />
+          <div v-for="comentario in lugar.comentarios">
+            <p>{{comentario}}</p>
+          </div>
+          <div>
+            <input v-model="nuevosComentarios[index]">
+            <button v-on:click="lugar.comentarios.push(nuevosComentarios[index]); nuevosComentarios[index] = ''">Agregar comentario</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: "Hello Vue!",
+        }
+      })
+    </script>
+    <script>
+      var app = new Vue({
+        el: '#turismo',
+        data: {
+          nuevosComentarios: {},
+          hide: false,
+          lugares: [
+            {
+              nombre: "Monterrey",
+              imagen: "mty.png",
+              comentarios: []
+            },
+            {
+              nombre: "Cancun",
+              imagen: "cancun.jpg",
+              comentarios: []
+            },
+            {
+              nombre: "Xilitla",
+              imagen: "xilitla.jpg",
+              comentarios: []
+            },
+          ]
+        }
+      })
+    </script>
+  </body>
+</html>

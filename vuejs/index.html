@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+  </head>
+
+  <body>
+    <div id="app"> {{ message }} </div>
+
+    <div id="pasatiempos">
+      <button  v-on:click="hide = !hide"> {{ hide ? 'Mostrar' : 'Esconder' }} pasatiempos</button>
+      <div v-if="!hide">
+        <div v-for="pasatiempo in pasatiempos">
+          <p> {{ pasatiempo }} </p>
+        </div>
+        <div>
+          <input v-model="nuevoPasatiempo">
+          <button v-on:click="pasatiempos.push(nuevoPasatiempo); nuevoPasatiempo = ''">Agregar pasatiempo</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: "Hello Vue!",
+        }
+      })
+    </script>
+    <script>
+      var app = new Vue({
+        el: '#pasatiempos',
+        data: {
+          pasatiempos: ["Leer", "Programar"],
+          hide: false,
+          nuevoPasatiempo: ""
+        }
+      })
+    </script>
+  </body>
+</html>

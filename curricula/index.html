@@ -1,69 +1,91 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset=utf-8>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <title>3132</title>
-    </head>
-    <body>
-        <div class="container">
-            <nav class="navbar fixed-top navbar-light bg-light">
-                <a class="navbar-brand" href="#formulario">Formulario</a>
-            </nav>
-            <div class="container" style="background: #aaa3; padding-top: 60px;">
-                <h2>
-                    Daniel Treviño Quiroga A01283132
-                </h2>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <button type="button" class="col btn btn-secondary">Menu 1</button>
-                    <button type="button" class="col btn btn-secondary">Menu 2</button>
-                    <button type="button" class="col btn btn-secondary">Menu 3</button>
-                </div>
-            </div>
-            <div style="padding: 200px; background: blue;">
-                espacio extra
-            </div>
-            <div class="card text-center" id="Ancla">
-                <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                    <a class="nav-link active" href="#Footer">Active</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#Ancla" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group" id="formulario">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                        </div>
-                        <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div> 
-            <div style="padding: 200px; background: blue;">
-                espacio extra
-            </div>
+  <head>
+    <title>Curricula</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand mb-0 h1" href="index.html">Daniel's Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li v-for="section in sections" class="nav-item">
+                <a class="nav-link" :href="'#' + section.title">{{section.title}}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#myDog">My dog</a>
+            </li>
+        </ul>
         </div>
-    </body>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      </nav>
+
+      <div class="jumbotron" v-for="section in sections" v-bind:id="section.title">
+        <h1 class="display-4">{{section.title}}</h1>
+        <div style="display: flex;" v-if="section.subssections.length > 1">
+          <hr class="my-4">
+          <div class="card" style="width: 40vw; margin-right: 5vw;" v-for="subsection in section.subssections">
+            <div class="card-body">
+              <h5 class="card-title">{{subsection.subtitle}}</h5>
+              <p class="card-text">{{subsection.content}}</p>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <div v-for="subsection in section.subssections">
+            <hr class="my-4">
+            <h5>{{subsection.subtitle}}</h5>
+            <p>{{subsection.content}}</p>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="display-4" style="text-align: center;" id="myDog">My dog</h1>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="background-color: #e9ecef;">
+        <div class="carousel-inner">
+          <div style="text-align: -webkit-center;" v-for="(img, index) in imgs" :class="{ 'active': index === 0, 'carousel-item' : true }">
+            <a :href="img">
+              <img :src="img" class="d-block" style="width: 50%">
+            </a>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+    </div>
+  </body>
+  <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: "Hello Vue!",
+        sections: [],
+        imgs: [],
+      },
+      methods: {
+        async getSections(){
+          this.sections = await fetchSections();
+          this.imgs = await fetchImgs();
+        }
+      },
+      beforeMount(){
+        this.getSections()
+      }
+    })
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 </html>
